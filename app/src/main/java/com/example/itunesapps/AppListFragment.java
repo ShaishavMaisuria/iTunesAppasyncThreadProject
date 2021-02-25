@@ -50,8 +50,10 @@ public class AppListFragment extends Fragment {
     }
 
     ListView applistView;
-    ArrayAdapter<DataServices.App> adapter;
+  //  ArrayAdapter<DataServices.App> adapter;
     ArrayList<DataServices.App> appListCategories= new ArrayList<>();
+
+    UserAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,12 +64,16 @@ public class AppListFragment extends Fragment {
 
         applistView=view.findViewById(R.id.applistView);
 
+
         DataServices.getAppsByCategory(lToken, categoryItem, new DataServices.DataResponse<DataServices.App>() {
             @Override
             public void onSuccess(ArrayList<DataServices.App> data) {
 
                 appListCategories.addAll(data);
-                adapter= new ArrayAdapter<DataServices.App>(getActivity(), android.R.layout.simple_list_item_1,android.R.id.text1,appListCategories);
+
+                adapter= new UserAdapter(getActivity(),R.layout.fragment_app_inside_list_view,data);
+
+                //adapter= new ArrayAdapter<DataServices.App>(getActivity(), android.R.layout.simple_list_item_1,android.R.id.text1,appListCategories);
                 applistView.setAdapter(adapter);
                 Log.d("applist","adapter list:"+appListCategories.toString());
             }
