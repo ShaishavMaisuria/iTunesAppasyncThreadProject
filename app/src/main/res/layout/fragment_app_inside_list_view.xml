@@ -8,22 +8,32 @@
 
     <TextView
         android:id="@+id/textViewAppName"
-        android:layout_width="208dp"
-        android:layout_height="41dp"
+        android:layout_width="252dp"
+        android:layout_height="35dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewArtistName"
-        android:layout_width="162dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
+        android:layout_width="195dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewAppName" />
+
+    <TextView
+        android:id="@+id/textViewReleaseDate"
+        android:layout_width="99dp"
+        android:layout_height="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewArtistName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.732"
+        app:layout_constraintStart_toEndOf="@+id/textViewArtistName"
+        app:layout_constraintTop_toTopOf="@+id/textViewArtistName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

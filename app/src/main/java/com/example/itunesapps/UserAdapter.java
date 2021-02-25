@@ -23,14 +23,15 @@ public class UserAdapter extends ArrayAdapter<DataServices.App> {
         if(convertView==null){
             convertView= LayoutInflater.from(getContext()).inflate(R.layout.fragment_app_inside_list_view,parent,false);
 
+
         }
         DataServices.App app= getItem(position);
         TextView appNameTextView =convertView.findViewById(R.id.textViewAppName);
-
         TextView artistNameTextView =convertView.findViewById(R.id.textViewArtistName);
+        TextView releaseDateTextView =convertView.findViewById(R.id.textViewReleaseDate);
         appNameTextView.setText( app.name);
         artistNameTextView.setText( app.artistName);
-
+        releaseDateTextView.setText( app.releaseDate);
         return convertView;
     }
 }

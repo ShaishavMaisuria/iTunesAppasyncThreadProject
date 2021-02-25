@@ -59,7 +59,7 @@ public class AppListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_app_list, container, false);
-        getActivity().setTitle("App List");
+        getActivity().setTitle(categoryItem);
 
 
         applistView=view.findViewById(R.id.applistView);
