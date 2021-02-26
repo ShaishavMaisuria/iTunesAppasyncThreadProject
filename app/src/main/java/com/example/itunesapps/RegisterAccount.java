@@ -82,7 +82,7 @@ public class RegisterAccount extends Fragment {
 
                         @Override
                         public void onFailure(DataServices.RequestException exception) {
-
+                            Toast.makeText(getActivity(), "UnSuccessfull Registration", Toast.LENGTH_SHORT).show();
                         }
                     });
 
