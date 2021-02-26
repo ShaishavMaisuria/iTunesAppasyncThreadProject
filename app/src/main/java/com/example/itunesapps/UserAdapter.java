@@ -22,16 +22,30 @@ public class UserAdapter extends ArrayAdapter<DataServices.App> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if(convertView==null){
             convertView= LayoutInflater.from(getContext()).inflate(R.layout.fragment_app_inside_list_view,parent,false);
-
+            ViewHolder viewHolder= new ViewHolder();
+            viewHolder.appNameTextView =convertView.findViewById(R.id.textViewAppName);
+            viewHolder.artistNameTextView =convertView.findViewById(R.id.textViewArtistName);
+            viewHolder.releaseDateTextView =convertView.findViewById(R.id.textViewReleaseDate);
+                convertView.setTag(viewHolder);
 
         }
         DataServices.App app= getItem(position);
-        TextView appNameTextView =convertView.findViewById(R.id.textViewAppName);
-        TextView artistNameTextView =convertView.findViewById(R.id.textViewArtistName);
-        TextView releaseDateTextView =convertView.findViewById(R.id.textViewReleaseDate);
-        appNameTextView.setText( app.name);
-        artistNameTextView.setText( app.artistName);
-        releaseDateTextView.setText( app.releaseDate);
+
+//        TextView appNameTextView =convertView.findViewById(R.id.textViewAppName);
+//        TextView artistNameTextView =convertView.findViewById(R.id.textViewArtistName);
+//        TextView releaseDateTextView =convertView.findViewById(R.id.textViewReleaseDate);
+        ViewHolder viewHolder= (ViewHolder)convertView.getTag();
+        viewHolder.appNameTextView.setText( app.name);
+        viewHolder.artistNameTextView.setText( app.artistName);
+        viewHolder.releaseDateTextView.setText( app.releaseDate);
         return convertView;
+    }
+
+
+    private static class ViewHolder {
+        TextView appNameTextView ;
+        TextView artistNameTextView ;
+        TextView releaseDateTextView;
+
     }
 }

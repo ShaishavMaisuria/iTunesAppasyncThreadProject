@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity implements LoginFragment.LoginListener, AppCategories.AppCategory , RegisterAccount.RegisterListener {
+public class MainActivity extends AppCompatActivity implements LoginFragment.LoginListener, AppCategories.AppCategory , RegisterAccount.RegisterListener, AppListFragment.appListListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,5 +55,13 @@ String categoryItemValue;
 
     }
 
-
+DataServices.App mApp;
+    @Override
+    public void goToAppDetails(DataServices.App application) {
+mApp=application;
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.rootView,AppDetails.newInstance(mApp),"AppDetails")
+                .addToBackStack("AppDetails")
+                .commit();
+    }
 }

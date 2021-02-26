@@ -64,6 +64,8 @@ public class AppCategories extends Fragment {
         // Inflate the layout for this fragment
         getActivity().setTitle("App Categories");
 
+        Log.d("demo", "onCreateView: AppCategories" );
+
 
         View view= inflater.inflate(R.layout.fragment_appcat, container, false);
         listView=view.findViewById(R.id.listView);
@@ -73,7 +75,7 @@ public class AppCategories extends Fragment {
             , new DataServices.DataResponse<String>() {
                 @Override
                 public void onSuccess(ArrayList<String> data) {
-
+                    categories.clear();
                     categories.addAll(data);
                 adapter= new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,android.R.id.text1,categories);
                 listView.setAdapter(adapter);

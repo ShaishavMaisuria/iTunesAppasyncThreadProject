@@ -1,14 +1,16 @@
 package com.example.itunesapps;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -76,6 +78,15 @@ public class AppListFragment extends Fragment {
                 //adapter= new ArrayAdapter<DataServices.App>(getActivity(), android.R.layout.simple_list_item_1,android.R.id.text1,appListCategories);
                 applistView.setAdapter(adapter);
                 Log.d("applist","adapter list:"+appListCategories.toString());
+
+
+                applistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Log.d("appList","app"+adapter.getItem(position).toString());
+                        mListener.goToAppDetails(adapter.getItem(position));
+                    }
+                });
             }
 
             @Override
@@ -85,5 +96,21 @@ public class AppListFragment extends Fragment {
         });
 
         return view;
+    }
+
+    appListListener mListener;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof appListListener){
+            mListener=(appListListener)context;
+        }else{
+            throw new RuntimeException(context.toString()+"must implement loginListener");
+        }
+    }
+
+    interface appListListener {
+        void goToAppDetails(DataServices.App application);
+
     }
 }
