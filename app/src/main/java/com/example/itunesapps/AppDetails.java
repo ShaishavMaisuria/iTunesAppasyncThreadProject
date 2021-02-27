@@ -70,13 +70,13 @@ public class AppDetails extends Fragment {
         appName.setText(mApp.name);
         releaseDate.setText(mApp.releaseDate);
 
-        recyclerView=view.findViewById(R.id.recyclerViewAppDetails);
-        recyclerView.setHasFixedSize(true);
-        layoutManager=new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-
-
-        adapter =new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,mApp.genres);
+//        recyclerView=view.findViewById(R.id.recyclerViewAppDetails);
+//        recyclerView.setHasFixedSize(true);
+//        layoutManager=new LinearLayoutManager(getActivity());
+//        recyclerView.setLayoutManager(layoutManager);
+//
+//
+//        adapter =new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,mApp.genres);
 
         //recyclerView.setAdapter(adapter);
 

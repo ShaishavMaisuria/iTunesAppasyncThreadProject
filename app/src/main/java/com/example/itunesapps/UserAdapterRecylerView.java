@@ -58,7 +58,8 @@ public class UserAdapterRecylerView extends RecyclerView.Adapter<UserAdapterRecy
         int position;
         DataServices.App iapp;
         userAdapterListener Listener;
-        userAdapterListener mListener;
+
+
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             rootView=itemView;
@@ -66,13 +67,14 @@ public class UserAdapterRecylerView extends RecyclerView.Adapter<UserAdapterRecy
             artistNameTextView =itemView.findViewById(R.id.textViewArtistName);
             releaseDateTextView =itemView.findViewById(R.id.textViewReleaseDate);
 
-            mListener=Listener;
+           ;
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                      Log.d("UserAdapter","item Clicked" +position+ " user " +iapp.artistName);
                        // mListener.goToAppDetails(iapp);
-                    mListener.goToAppDetails(iapp);
+
+                    Listener.goToAppDetails(iapp);
                 }
             });
 
@@ -94,7 +96,7 @@ public class UserAdapterRecylerView extends RecyclerView.Adapter<UserAdapterRecy
 //    }
 
 
-    interface userAdapterListener {
+    public interface userAdapterListener {
         void goToAppDetails(DataServices.App application);
 
     }
