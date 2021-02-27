@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity implements LoginFragment.LoginListener, AppCategories.AppCategory , RegisterAccount.RegisterListener, AppListFragment.appListListener, UserAdapterRecylerView.userAdapterListener {
+public class MainActivity extends AppCompatActivity implements LoginFragment.LoginListener, AppCategories.AppCategory , RegisterAccount.RegisterListener, AppListFragment.appListListener, UserAdapterRecylerView.userAdapterListener, appCategoriesAdapter.AppCategoryAdapter {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

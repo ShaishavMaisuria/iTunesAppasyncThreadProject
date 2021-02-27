@@ -91,6 +91,9 @@ public class AppListFragment extends Fragment {
                 Log.d("applist", "adapter list:" + appListCategories.toString());
 
 
+
+
+
             }
 
             @Override

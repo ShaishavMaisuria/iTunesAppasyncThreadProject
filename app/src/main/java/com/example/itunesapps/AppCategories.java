@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -53,8 +55,11 @@ public class AppCategories extends Fragment {
 
 
 
-    ListView listView;
-    ArrayAdapter<String> adapter;
+    //ListView listView;
+   appCategoriesAdapter adapter;
+    RecyclerView recyclerView;
+    LinearLayoutManager layoutManager;
+
     ArrayList<String> categories= new ArrayList<>();
     TextView textViewGreetings;
     String username;
@@ -64,11 +69,8 @@ public class AppCategories extends Fragment {
         // Inflate the layout for this fragment
         getActivity().setTitle("App Categories");
 
-        Log.d("demo", "onCreateView: AppCategories" );
-
-
         View view= inflater.inflate(R.layout.fragment_appcat, container, false);
-        listView=view.findViewById(R.id.listView);
+        recyclerView=view.findViewById(R.id.recyleViewerAppCat);
 
 
     DataServices.getAppCategories(atoken
@@ -77,21 +79,29 @@ public class AppCategories extends Fragment {
                 public void onSuccess(ArrayList<String> data) {
                     categories.clear();
                     categories.addAll(data);
-                adapter= new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,android.R.id.text1,categories);
-                listView.setAdapter(adapter);
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                        Log.d("AppCategories","item"+adapter.getItem(position) );
-
-                        mListener.toAppList(adapter.getItem(position),atoken );
+                    recyclerView.setHasFixedSize(true);
+                    layoutManager = new LinearLayoutManager(getActivity());
+                    recyclerView.setLayoutManager(layoutManager);
+                    adapter = new appCategoriesAdapter(data,getActivity(),atoken);
+                    recyclerView.setAdapter(adapter);
 
 
 
-                    }
-                });
+//                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                        Log.d("AppCategories","item"+adapter.getItem(position) );
+//
+//                        mListener.toAppList(adapter.getItem(position),atoken );
+//
+//
+//
+//                    }
+//                });
+
+
                 }
 
                 @Override
@@ -141,7 +151,7 @@ public class AppCategories extends Fragment {
 
     interface AppCategory{
         void returnToLogin();
-        void toAppList(String categoryItem,String token);
+       // void toAppList(String categoryItem,String token);
     }
 
 

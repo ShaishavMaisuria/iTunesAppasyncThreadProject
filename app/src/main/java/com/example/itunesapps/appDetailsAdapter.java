@@ -1,9 +1,10 @@
 package com.example.itunesapps;
 
-import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -13,10 +14,10 @@ import java.util.ArrayList;
 
 public class appDetailsAdapter  extends RecyclerView.Adapter<appDetailsAdapter.AppDetailsHolder> {
 
-ArrayList<DataServices.App> app;
+ArrayList<String> genre;
 
-    public appDetailsAdapter(ArrayList<DataServices.App> incomingApp,FragmentActivity activity){
-        this.app=incomingApp;
+    public appDetailsAdapter(ArrayList<String> incomingGenre, FragmentActivity activity){
+        this.genre=incomingGenre;
     }
 
 
@@ -31,13 +32,11 @@ ArrayList<DataServices.App> app;
     @Override
     public void onBindViewHolder(@NonNull AppDetailsHolder holder, int position){
 
-        DataServices.App myApp=app.get(position);
-        holder.appNameTextView.setText(myApp.name);
-        holder.artistNameTextView.setText(myApp.artistName);
-        holder.releaseDateTextView.setText(myApp.releaseDate);
-        holder.position=position;
-        holder.iapp=myApp;
-        holder.Listener=this.mListener;
+        String myApp=genre.get(position);
+        holder.genreList.setText(myApp);
+
+        Log.d("appDetailsAdapter",myApp.toString());
+
 
     }
 
@@ -46,7 +45,7 @@ ArrayList<DataServices.App> app;
 
     public int getItemCount() {
 
-        return this.app.size();
+        return this.genre.size();
     }
 
 
@@ -54,9 +53,21 @@ ArrayList<DataServices.App> app;
 
     public static class AppDetailsHolder extends RecyclerView.ViewHolder{
 
+        TextView genreList;
+        View rootView;
+        int position;
+
+
         public AppDetailsHolder(@NonNull View itemView) {
             super(itemView);
+            rootView=itemView;
+            genreList =itemView.findViewById(R.id.textViewappDetailrecyleList);
+
+
+
         }
+
+
     }
 
 

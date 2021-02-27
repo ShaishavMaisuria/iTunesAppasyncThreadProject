@@ -1,18 +1,15 @@
 package com.example.itunesapps;
 
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -24,9 +21,7 @@ public class AppDetails extends Fragment {
    DataServices.App mApp;
 
 
-    public AppDetails() {
-        // Required empty public constructor
-    }
+
 
 
     public static AppDetails newInstance(DataServices.App App) {
@@ -51,7 +46,7 @@ public class AppDetails extends Fragment {
     TextView releaseDate;
     //ListView listView;
 
-    ArrayAdapter<String> adapter;
+    appDetailsAdapter adapter;
     LinearLayoutManager layoutManager;
     RecyclerView recyclerView;
     @Override
@@ -70,15 +65,17 @@ public class AppDetails extends Fragment {
         appName.setText(mApp.name);
         releaseDate.setText(mApp.releaseDate);
 
-//        recyclerView=view.findViewById(R.id.recyclerViewAppDetails);
-//        recyclerView.setHasFixedSize(true);
-//        layoutManager=new LinearLayoutManager(getActivity());
-//        recyclerView.setLayoutManager(layoutManager);
-//
-//
-//        adapter =new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,mApp.genres);
+        recyclerView = view.findViewById(R.id.appDetailsRecycleView);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new appDetailsAdapter(mApp.genres, getActivity());
 
-        //recyclerView.setAdapter(adapter);
+
+        recyclerView.setAdapter(adapter);
+        Log.d("appDetail","adapter list:" + mApp.genres.toString());
+
+
 
         return view;
     }
