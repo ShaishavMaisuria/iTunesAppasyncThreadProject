@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,8 +49,11 @@ public class AppDetails extends Fragment {
     TextView artistName;
     TextView appName;
     TextView releaseDate;
-    ListView listView;
+    //ListView listView;
+
     ArrayAdapter<String> adapter;
+    LinearLayoutManager layoutManager;
+    RecyclerView recyclerView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,10 +70,15 @@ public class AppDetails extends Fragment {
         appName.setText(mApp.name);
         releaseDate.setText(mApp.releaseDate);
 
-        listView=view.findViewById(R.id.listViewAppDetailsGenre);
+        recyclerView=view.findViewById(R.id.recyclerViewAppDetails);
+        recyclerView.setHasFixedSize(true);
+        layoutManager=new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+
 
         adapter =new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,mApp.genres);
-        listView.setAdapter(adapter);
+
+        //recyclerView.setAdapter(adapter);
 
         return view;
     }

@@ -114,7 +114,7 @@ public class AppCategories extends Fragment {
 
             }
         });
-       textViewGreetings.setText("Welcome" + username);
+       textViewGreetings.setText("      Welcome " + username);
 
 
 

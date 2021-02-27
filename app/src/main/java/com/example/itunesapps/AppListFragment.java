@@ -5,12 +5,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -51,20 +54,23 @@ public class AppListFragment extends Fragment {
         }
     }
 
-    ListView applistView;
-  //  ArrayAdapter<DataServices.App> adapter;
-    ArrayList<DataServices.App> appListCategories= new ArrayList<>();
+    // ListView applistView;
+    // ArrayAdapter<DataServices.App> adapter;
+    ArrayList<DataServices.App> appListCategories = new ArrayList<>();
+    LinearLayoutManager layoutManager;
+    RecyclerView recyclerView;
+    UserAdapterRecylerView adapter;
 
-    UserAdapter adapter;
+    //UserAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_app_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_app_list, container, false);
         getActivity().setTitle(categoryItem);
 
 
-        applistView=view.findViewById(R.id.applistView);
+        recyclerView = view.findViewById(R.id.recycleViewAppList);
 
 
         DataServices.getAppsByCategory(lToken, categoryItem, new DataServices.DataResponse<DataServices.App>() {
@@ -73,20 +79,18 @@ public class AppListFragment extends Fragment {
 
                 appListCategories.addAll(data);
 
-                adapter= new UserAdapter(getActivity(),R.layout.fragment_app_inside_list_view,data);
+
+                recyclerView.setHasFixedSize(true);
+                layoutManager = new LinearLayoutManager(getActivity());
+                recyclerView.setLayoutManager(layoutManager);
+                adapter = new UserAdapterRecylerView(data,getActivity() );
+
 
                 //adapter= new ArrayAdapter<DataServices.App>(getActivity(), android.R.layout.simple_list_item_1,android.R.id.text1,appListCategories);
-                applistView.setAdapter(adapter);
-                Log.d("applist","adapter list:"+appListCategories.toString());
+                recyclerView.setAdapter(adapter);
+                Log.d("applist", "adapter list:" + appListCategories.toString());
 
 
-                applistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Log.d("appList","app"+adapter.getItem(position).toString());
-                        mListener.goToAppDetails(adapter.getItem(position));
-                    }
-                });
             }
 
             @Override
@@ -99,13 +103,14 @@ public class AppListFragment extends Fragment {
     }
 
     appListListener mListener;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if(context instanceof appListListener){
-            mListener=(appListListener)context;
-        }else{
-            throw new RuntimeException(context.toString()+"must implement loginListener");
+        if (context instanceof appListListener) {
+            mListener = (appListListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + "must implement loginListener");
         }
     }
 

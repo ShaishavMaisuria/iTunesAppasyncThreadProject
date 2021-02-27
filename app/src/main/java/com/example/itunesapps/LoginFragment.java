@@ -1,5 +1,7 @@
 package com.example.itunesapps;
-
+/*
+@author shaishav
+ */
 import android.content.Context;
 import android.os.Bundle;
 
@@ -80,7 +82,7 @@ public class LoginFragment extends Fragment {
 
                              @Override
                              public void onFailure(DataServices.RequestException exception) {
-
+                                 Toast.makeText(getActivity(),"Unsuccessfull Logina",Toast.LENGTH_SHORT).show();
                              }
                          });
 
