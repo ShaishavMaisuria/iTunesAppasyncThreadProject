@@ -74,17 +74,17 @@ public class RegisterAccount extends Fragment {
 
                     DataServices.register(viewUsername.getText().toString(), viewEmail.getText().toString(), viewPassword.getText().toString()
                             , new DataServices.AuthResponse() {
-                        @Override
-                        public void onSuccess(String token) {
-                            mListener.loginIsSuccesful(token);
+                                @Override
+                                public void onSuccess(String token) {
+                                    mListener.loginIsSuccesful(token);
 
-                        }
+                                }
 
-                        @Override
-                        public void onFailure(DataServices.RequestException exception) {
-                            Toast.makeText(getActivity(), "UnSuccessfull Registration", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                                @Override
+                                public void onFailure(DataServices.RequestException exception) {
+                                    Toast.makeText(getActivity(), "UnSuccessfull Registration", Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
                 }
             }

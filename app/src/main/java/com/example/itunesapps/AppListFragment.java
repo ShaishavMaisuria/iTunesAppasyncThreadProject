@@ -54,14 +54,12 @@ public class AppListFragment extends Fragment {
         }
     }
 
-    // ListView applistView;
-    // ArrayAdapter<DataServices.App> adapter;
+
     ArrayList<DataServices.App> appListCategories = new ArrayList<>();
     LinearLayoutManager layoutManager;
     RecyclerView recyclerView;
     UserAdapterRecylerView adapter;
 
-    //UserAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,15 +81,11 @@ public class AppListFragment extends Fragment {
                 recyclerView.setHasFixedSize(true);
                 layoutManager = new LinearLayoutManager(getActivity());
                 recyclerView.setLayoutManager(layoutManager);
-                adapter = new UserAdapterRecylerView(data,getActivity() );
+                adapter = new UserAdapterRecylerView(data, getActivity());
 
 
-                //adapter= new ArrayAdapter<DataServices.App>(getActivity(), android.R.layout.simple_list_item_1,android.R.id.text1,appListCategories);
                 recyclerView.setAdapter(adapter);
                 Log.d("applist", "adapter list:" + appListCategories.toString());
-
-
-
 
 
             }
@@ -105,20 +99,5 @@ public class AppListFragment extends Fragment {
         return view;
     }
 
-    appListListener mListener;
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (context instanceof appListListener) {
-            mListener = (appListListener) context;
-        } else {
-            throw new RuntimeException(context.toString() + "must implement loginListener");
-        }
-    }
-
-    interface appListListener {
-        void goToAppDetails(DataServices.App application);
-
-    }
 }

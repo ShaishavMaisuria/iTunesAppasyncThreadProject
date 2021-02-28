@@ -18,17 +18,17 @@ public class UserAdapterRecylerView extends RecyclerView.Adapter<UserAdapterRecy
     ArrayList<DataServices.App> app;
     userAdapterListener mListener;
 
-    public UserAdapterRecylerView(ArrayList<DataServices.App> incomingApp, FragmentActivity activity){
-        this.app=incomingApp;
-        this.mListener= (userAdapterListener) activity;
+    public UserAdapterRecylerView(ArrayList<DataServices.App> incomingApp, FragmentActivity activity) {
+        this.app = incomingApp;
+        this.mListener = (userAdapterListener) activity;
 
     }
 
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_app_inside_list_view,parent,false);
-        UserViewHolder  userViewHolder= new UserViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_app_inside_list_view, parent, false);
+        UserViewHolder userViewHolder = new UserViewHolder(view);
 
         return userViewHolder;
     }
@@ -36,13 +36,13 @@ public class UserAdapterRecylerView extends RecyclerView.Adapter<UserAdapterRecy
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
 
-            DataServices.App myApp=app.get(position);
-            holder.appNameTextView.setText(myApp.name);
-             holder.artistNameTextView.setText(myApp.artistName);
+        DataServices.App myApp = app.get(position);
+        holder.appNameTextView.setText(myApp.name);
+        holder.artistNameTextView.setText(myApp.artistName);
         holder.releaseDateTextView.setText(myApp.releaseDate);
-            holder.position=position;
-            holder.iapp=myApp;
-            holder.Listener=this.mListener;
+        holder.position = position;
+        holder.iapp = myApp;
+        holder.Listener = this.mListener;
     }
 
     @Override
@@ -50,9 +50,9 @@ public class UserAdapterRecylerView extends RecyclerView.Adapter<UserAdapterRecy
         return this.app.size();
     }
 
-    public static class UserViewHolder extends RecyclerView.ViewHolder{
-        TextView appNameTextView ;
-        TextView artistNameTextView ;
+    public static class UserViewHolder extends RecyclerView.ViewHolder {
+        TextView appNameTextView;
+        TextView artistNameTextView;
         TextView releaseDateTextView;
         View rootView;
         int position;
@@ -62,17 +62,16 @@ public class UserAdapterRecylerView extends RecyclerView.Adapter<UserAdapterRecy
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
-            rootView=itemView;
-            appNameTextView =itemView.findViewById(R.id.textViewAppName);
-            artistNameTextView =itemView.findViewById(R.id.textViewArtistName);
-            releaseDateTextView =itemView.findViewById(R.id.textViewReleaseDate);
+            rootView = itemView;
+            appNameTextView = itemView.findViewById(R.id.textViewAppName);
+            artistNameTextView = itemView.findViewById(R.id.textViewArtistName);
+            releaseDateTextView = itemView.findViewById(R.id.textViewReleaseDate);
 
-           ;
+            ;
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                     Log.d("UserAdapter","item Clicked" +position+ " user " +iapp.artistName);
-                       // mListener.goToAppDetails(iapp);
+                    Log.d("UserAdapter", "item Clicked" + position + " user " + iapp.artistName);
 
                     Listener.goToAppDetails(iapp);
                 }
@@ -80,8 +79,6 @@ public class UserAdapterRecylerView extends RecyclerView.Adapter<UserAdapterRecy
 
         }
     }
-
-
 
 
 //    @Override

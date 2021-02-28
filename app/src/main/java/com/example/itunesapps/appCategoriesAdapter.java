@@ -11,15 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class appCategoriesAdapter extends RecyclerView.Adapter<appCategoriesAdapter.appCategoriesHolder>{
+public class appCategoriesAdapter extends RecyclerView.Adapter<appCategoriesAdapter.appCategoriesHolder> {
 
     ArrayList<String> categories;
     String mtoken;
     AppCategoryAdapter mlistener;
-    public appCategoriesAdapter(ArrayList<String> incomingCategories, FragmentActivity activity,String token){
-        this.categories=incomingCategories;
-        this.mlistener= (AppCategoryAdapter) activity;
-        this.mtoken=token;
+
+    public appCategoriesAdapter(ArrayList<String> incomingCategories, FragmentActivity activity, String token) {
+        this.categories = incomingCategories;
+        this.mlistener = (AppCategoryAdapter) activity;
+        this.mtoken = token;
 
     }
 
@@ -27,7 +28,7 @@ public class appCategoriesAdapter extends RecyclerView.Adapter<appCategoriesAdap
     @NonNull
     @Override
     public appCategoriesHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.appdetailsrecylelist,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.appdetailsrecylelist, parent, false);
         appCategoriesHolder appCategoriesHoldervalue = new appCategoriesHolder(view);
         return appCategoriesHoldervalue;
     }
@@ -36,11 +37,11 @@ public class appCategoriesAdapter extends RecyclerView.Adapter<appCategoriesAdap
     public void onBindViewHolder(@NonNull appCategoriesHolder holder, int position) {
 
 
-        String category=categories.get(position);
-       holder.categoriesValues.setText(category);
-        holder.listener=this.mlistener;
-        holder.token=this.mtoken;
-        holder.categoryName=category;
+        String category = categories.get(position);
+        holder.categoriesValues.setText(category);
+        holder.listener = this.mlistener;
+        holder.token = this.mtoken;
+        holder.categoryName = category;
     }
 
     @Override
@@ -48,33 +49,33 @@ public class appCategoriesAdapter extends RecyclerView.Adapter<appCategoriesAdap
         return this.categories.size();
     }
 
-    public static class appCategoriesHolder extends RecyclerView.ViewHolder{
+    public static class appCategoriesHolder extends RecyclerView.ViewHolder {
 
         TextView categoriesValues;
         View rootView;
         AppCategoryAdapter listener;
         String token;
         String categoryName;
-      public appCategoriesHolder(@NonNull View itemView) {
-          super(itemView);
-          rootView=itemView;
-          categoriesValues =itemView.findViewById(R.id.textViewappDetailrecyleList);
+
+        public appCategoriesHolder(@NonNull View itemView) {
+            super(itemView);
+            rootView = itemView;
+            categoriesValues = itemView.findViewById(R.id.textViewappDetailrecyleList);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.toAppList(categoryName,token);
+                    listener.toAppList(categoryName, token);
                 }
             });
 
 
+        }
+    }
 
-      }
-  }
-
-    interface AppCategoryAdapter{
+    interface AppCategoryAdapter {
         //void returnToLogin();
-        void toAppList(String categoryItem,String token);
+        void toAppList(String categoryItem, String token);
     }
 
 

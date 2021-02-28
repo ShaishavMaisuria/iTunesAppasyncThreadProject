@@ -12,30 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class appDetailsAdapter  extends RecyclerView.Adapter<appDetailsAdapter.AppDetailsHolder> {
+public class appDetailsAdapter extends RecyclerView.Adapter<appDetailsAdapter.AppDetailsHolder> {
 
-ArrayList<String> genre;
+    ArrayList<String> genre;
 
-    public appDetailsAdapter(ArrayList<String> incomingGenre, FragmentActivity activity){
-        this.genre=incomingGenre;
+    public appDetailsAdapter(ArrayList<String> incomingGenre, FragmentActivity activity) {
+        this.genre = incomingGenre;
     }
 
 
     @NonNull
     @Override
     public AppDetailsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.appdetailsrecylelist,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.appdetailsrecylelist, parent, false);
         AppDetailsHolder appDetailsHolder = new AppDetailsHolder(view);
         return appDetailsHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AppDetailsHolder holder, int position){
+    public void onBindViewHolder(@NonNull AppDetailsHolder holder, int position) {
 
-        String myApp=genre.get(position);
+        String myApp = genre.get(position);
         holder.genreList.setText(myApp);
 
-        Log.d("appDetailsAdapter",myApp.toString());
+        Log.d("appDetailsAdapter", myApp.toString());
 
 
     }
@@ -49,9 +49,7 @@ ArrayList<String> genre;
     }
 
 
-
-
-    public static class AppDetailsHolder extends RecyclerView.ViewHolder{
+    public static class AppDetailsHolder extends RecyclerView.ViewHolder {
 
         TextView genreList;
         View rootView;
@@ -60,16 +58,14 @@ ArrayList<String> genre;
 
         public AppDetailsHolder(@NonNull View itemView) {
             super(itemView);
-            rootView=itemView;
-            genreList =itemView.findViewById(R.id.textViewappDetailrecyleList);
-
+            rootView = itemView;
+            genreList = itemView.findViewById(R.id.textViewappDetailrecyleList);
 
 
         }
 
 
     }
-
 
 
 }

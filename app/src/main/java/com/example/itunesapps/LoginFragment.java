@@ -2,6 +2,7 @@ package com.example.itunesapps;
 /*
 @author shaishav
  */
+
 import android.content.Context;
 import android.os.Bundle;
 
@@ -31,7 +32,6 @@ public class LoginFragment extends Fragment {
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +49,7 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
 
 
         userEmail = view.findViewById(R.id.editTextEmailAddressLogin);
@@ -60,31 +60,31 @@ public class LoginFragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String email=userEmail.getText().toString();
-                        String password=userPassword.getText().toString();
+                        String email = userEmail.getText().toString();
+                        String password = userPassword.getText().toString();
 
 
-                        InputMethodManager imm= (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(v.getWindowToken(),0);
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
-                        if(email.isEmpty() || password.isEmpty()){
-                            Toast.makeText(getActivity(),"Password/Email cannot be empty",Toast.LENGTH_SHORT).show();
+                        if (email.isEmpty() || password.isEmpty()) {
+                            Toast.makeText(getActivity(), "Password/Email cannot be empty", Toast.LENGTH_SHORT).show();
 
                         }
 
-                         DataServices.login(email, password, new DataServices.AuthResponse() {
-                             @Override
-                             public void onSuccess(String token) {
+                        DataServices.login(email, password, new DataServices.AuthResponse() {
+                            @Override
+                            public void onSuccess(String token) {
 
                                 mListener.loginIsSuccesful(token);
 
-                             }
+                            }
 
-                             @Override
-                             public void onFailure(DataServices.RequestException exception) {
-                                 Toast.makeText(getActivity(),"Unsuccessfull Logina",Toast.LENGTH_SHORT).show();
-                             }
-                         });
+                            @Override
+                            public void onFailure(DataServices.RequestException exception) {
+                                Toast.makeText(getActivity(), "Unsuccessfull Logina", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
 
                     }
@@ -100,26 +100,26 @@ public class LoginFragment extends Fragment {
         });
 
 
-
         return view;
     }
 
     LoginListener mListener;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if(context instanceof LoginListener){
-            mListener=(LoginListener)context;
-        }else{
-            throw new RuntimeException(context.toString()+"must implement loginListener");
+        if (context instanceof LoginListener) {
+            mListener = (LoginListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + "must implement loginListener");
         }
     }
 
-    interface LoginListener{
+    interface LoginListener {
         void loginIsSuccesful(String token);
-        void gotoRegistration();
-        }
 
+        void gotoRegistration();
+    }
 
 
 }

@@ -18,10 +18,7 @@ public class AppDetails extends Fragment {
     private static final String ARG_PARAM_APPDETAILS = "ARG_PARAM_APPDETAILS";
 
 
-   DataServices.App mApp;
-
-
-
+    DataServices.App mApp;
 
 
     public static AppDetails newInstance(DataServices.App App) {
@@ -37,29 +34,31 @@ public class AppDetails extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mApp = (DataServices.App)getArguments().getSerializable(ARG_PARAM_APPDETAILS);
+            mApp = (DataServices.App) getArguments().getSerializable(ARG_PARAM_APPDETAILS);
 
         }
     }
+
     TextView artistName;
     TextView appName;
     TextView releaseDate;
-    //ListView listView;
+
 
     appDetailsAdapter adapter;
     LinearLayoutManager layoutManager;
     RecyclerView recyclerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_app_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_app_details, container, false);
 
         getActivity().setTitle("App Details");
 
-        artistName=view.findViewById(R.id.textViewArtistNameAppDetails);
-        appName=view.findViewById(R.id.textViewAppNameAppDetails);
-        releaseDate=view.findViewById(R.id.textViewReleaseDateAppDetails);
+        artistName = view.findViewById(R.id.textViewArtistNameAppDetails);
+        appName = view.findViewById(R.id.textViewAppNameAppDetails);
+        releaseDate = view.findViewById(R.id.textViewReleaseDateAppDetails);
 
         artistName.setText(mApp.artistName);
         appName.setText(mApp.name);
@@ -73,15 +72,11 @@ public class AppDetails extends Fragment {
 
 
         recyclerView.setAdapter(adapter);
-        Log.d("appDetail","adapter list:" + mApp.genres.toString());
-
+        Log.d("appDetail", "adapter list:" + mApp.genres.toString());
 
 
         return view;
     }
-
-
-
 
 
 }
