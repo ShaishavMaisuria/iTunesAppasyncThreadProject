@@ -135,7 +135,7 @@ public class AppCategories extends Fragment {
 
     interface AppCategory {
         void returnToLogin();
-        // void toAppList(String categoryItem,String token);
+
     }
 
 
